@@ -1,15 +1,10 @@
 'use strict';
 
-/*
- * Created with @iobroker/create-adapter v2.3.0
- */
-
-// The adapter-core module gives you access to the core ioBroker functions
-// you need to create an adapter
 const utils = require('@iobroker/adapter-core');
+const request = require('request'); //depricated
 
-// Load your modules here, e.g.:
-// const fs = require("fs");
+const meaterUrl = 'https://public-api.cloud.meater.com/v1/devices';
+const meaterUrlLogin = 'https://public-api.cloud.meater.com/v1/login';
 
 class Meater extends utils.Adapter {
 	/**
@@ -21,70 +16,91 @@ class Meater extends utils.Adapter {
 			name: 'meater',
 		});
 		this.on('ready', this.onReady.bind(this));
-		this.on('stateChange', this.onStateChange.bind(this));
-		// this.on('objectChange', this.onObjectChange.bind(this));
-		// this.on('message', this.onMessage.bind(this));
 		this.on('unload', this.onUnload.bind(this));
+		this.states = new Array();
+		this.path = new Array();
+		this.token = '';
+		this.statusCode = 0;
+		this.expire = 0;
+		this.updateTimer = 60;
 	}
 
-	/**
-	 * Is called when databases are connected and adapter received configuration.
-	 */
 	async onReady() {
-		// Initialize your adapter here
-
 		// Reset the connection indicator during startup
 		this.setState('info.connection', false, true);
 
-		// The adapters config (in the instance object everything under the attribute "native") is accessible via
-		// this.config:
-		this.log.info('config option1: ' + this.config.option1);
-		this.log.info('config option2: ' + this.config.option2);
-
-		/*
-		For every state in the system there has to be also an object of type state
-		Here a simple template for a boolean variable named "testVariable"
-		Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-		*/
-		await this.setObjectNotExistsAsync('testVariable', {
+		// Create states
+		await this.setObjectNotExistsAsync('info.token', {
 			type: 'state',
 			common: {
-				name: 'testVariable',
-				type: 'boolean',
-				role: 'indicator',
+				name: 'Meater cloud auth token',
+				type: 'string',
+				role: 'state',
 				read: true,
-				write: true,
+				write: false,
 			},
 			native: {},
 		});
+		await this.setObjectNotExistsAsync('info.userId', {
+			type: 'state',
+			common: {
+				name: 'User ID for Meater cloud',
+				type: 'string',
+				role: 'state',
+				read: true,
+				write: false,
+			},
+			native: {},
+		});
+		await this.setObjectNotExistsAsync('rawData', {
+			type: 'state',
+			common: {
+				name: 'Last answer from Meater cloud',
+				type: 'string',
+				role: 'JSON',
+				read: true,
+				write: false,
+			},
+			native: {},
+		});
+		await this.setObjectNotExistsAsync('status', {
+			type: 'state',
+			common: {
+				name: 'Status of cloud last API call',
+				type: 'string',
+				role: 'state',
+				read: true,
+				write: false,
+			},
+			native: {},
+		});
+		await this.setObjectNotExistsAsync('statusCode', {
+			type: 'state',
+			common: {
+				name: 'Status of cloud last API call as number',
+				type: 'number',
+				role: 'state',
+				read: true,
+				write: false,
+			},
+			native: {},
+		});
+		await this.setObjectNotExistsAsync('cookingActive', {
+			type: 'state',
+			common: {
+				name: 'If cooking is active with one or more probes',
+				type: 'boolean',
+				role: 'indicator',
+				read: true,
+				write: false,
+			},
+			native: {},
+		});
+		// Connect to cloud
+		await this.login();
 
-		// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
-		this.subscribeStates('testVariable');
-		// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
-		// this.subscribeStates('lights.*');
-		// Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
-		// this.subscribeStates('*');
-
-		/*
-			setState examples
-			you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-		*/
-		// the variable testVariable is set to true as command (ack=false)
-		await this.setStateAsync('testVariable', true);
-
-		// same thing, but the value is flagged "ack"
-		// ack should be always set to true if the value is received from or acknowledged from the target system
-		await this.setStateAsync('testVariable', { val: true, ack: true });
-
-		// same thing, but the state is deleted after 30s (getState will return null afterwards)
-		await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
-
-		// examples for the checkPassword/checkGroup functions
-		let result = await this.checkPasswordAsync('admin', 'iobroker');
-		this.log.info('check user admin pw iobroker: ' + result);
-
-		result = await this.checkGroupAsync('admin', 'admin');
-		this.log.info('check group user admin group admin: ' + result);
+		// Get data from cloud
+		this.readFromCloud();
 	}
 
 	/**
@@ -94,66 +110,308 @@ class Meater extends utils.Adapter {
 	onUnload(callback) {
 		try {
 			// Here you must clear all timeouts or intervals that may still be active
-			// clearTimeout(timeout1);
-			// clearTimeout(timeout2);
-			// ...
-			// clearInterval(interval1);
-
 			callback();
 		} catch (e) {
 			callback();
 		}
 	}
 
-	// If you need to react to object changes, uncomment the following block and the corresponding line in the constructor.
-	// You also need to subscribe to the objects with `this.subscribeObjects`, similar to `this.subscribeStates`.
-	// /**
-	//  * Is called if a subscribed object changes
-	//  * @param {string} id
-	//  * @param {ioBroker.Object | null | undefined} obj
-	//  */
-	// onObjectChange(id, obj) {
-	// 	if (obj) {
-	// 		// The object was changed
-	// 		this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-	// 	} else {
-	// 		// The object was deleted
-	// 		this.log.info(`object ${id} deleted`);
-	// 	}
-	// }
+	// Login
+	async login() {
+		request.post(
+			{
+				headers: { 'content-type': 'application/json' },
+				url: meaterUrlLogin,
+				json: { email: this.config.username, password: this.config.password },
+			},
+			async (error, response, result) => {
+				// Login data is not in JSON formmat
+				result = JSON.stringify(result);
 
-	/**
-	 * Is called if a subscribed state changes
-	 * @param {string} id
-	 * @param {ioBroker.State | null | undefined} state
-	 */
-	onStateChange(id, state) {
-		if (state) {
-			// The state was changed
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-		} else {
-			// The state was deleted
-			this.log.info(`state ${id} deleted`);
+				// Log received data
+				console.debug('result from login: ' + result);
+
+				// Save into states
+				this.setStateAsync('rawData', result, true);
+
+				this.token = JSON.parse(result).data.token;
+				this.setStateAsync('info.token', this.token, true);
+
+				this.setStateAsync('info.userId', JSON.parse(result).data.userId, true);
+				this.setStateAsync('status', JSON.parse(result).status, true);
+
+				this.statusCode = JSON.parse(result).statusCode;
+				this.setStateAsync('statusCode', this.statusCode, true);
+				await this.handleStatusCode(this.statusCode);
+			},
+		);
+	}
+
+	// Check and handle status code
+	async handleStatusCode(statusCode) {
+		switch (statusCode) {
+			case 200: // OK
+				console.debug('Statuscode 200 --> OK');
+				this.setState('info.connection', true, true);
+				break;
+			case 400: // Bad Request
+				console.error('Statuscode 400 --> Bad Request');
+				this.setState('info.connection', false, true);
+				this.updateTimer = 600; //sec
+				break;
+			case 401: // Unauthorized
+				console.log('Statuscode 401 --> Unauthorized --> login');
+				this.setState('info.connection', false, true);
+				await this.login();
+				break;
+			case 404: // Not Found
+				console.warn('Statuscode 404 --> Not Found');
+				this.setState('info.connection', false, true);
+				this.updateTimer = 600; //sec
+				break;
+			case 429: // Too Many Requests
+				console.warn('Statuscode 429 --> Too Many Requests');
+				this.updateTimer = 600; //sec
+				break;
+			case 500: // Internal Server Error
+				console.warn('Statuscode 500 --> Internal Server Error');
+				this.setState('info.connection', false, true);
+				this.updateTimer = 600; //sec
+				break;
 		}
 	}
 
-	// If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
-	// /**
-	//  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-	//  * Using this method requires "common.messagebox" property to be set to true in io-package.json
-	//  * @param {ioBroker.Message} obj
-	//  */
-	// onMessage(obj) {
-	// 	if (typeof obj === 'object' && obj.message) {
-	// 		if (obj.command === 'send') {
-	// 			// e.g. send email or pushover or whatever
-	// 			this.log.info('send command');
+	// Read data from Meater cloud
+	async readFromCloud() {
+		request.get(
+			{
+				headers: { Authorization: 'Bearer ' + this.token, 'Accept-Language': this.config.language },
+				url: meaterUrl,
+			},
+			async (error, response, result) => {
+				// Log received data
+				console.debug('result from readFromCloud: ' + result);
 
-	// 			// Send response in callback if required
-	// 			if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
-	// 		}
-	// 	}
-	// }
+				// Save states
+				this.setStateAsync('rawData', result, true);
+				this.setStateAsync('status', JSON.parse(result).status, true);
+
+				this.statusCode = JSON.parse(result).statusCode;
+				this.setStateAsync('statusCode', this.statusCode, true);
+				await this.handleStatusCode(this.statusCode);
+
+				if (this.statusCode == 200) {
+					await this.readDeviceData(JSON.parse(result));
+				}
+
+				// If everthing is done run again in ...secons
+				setTimeout(() => {
+					this.readFromCloud();
+				}, this.updateTimer * 1000);
+			},
+		);
+	}
+
+	// Create new device
+	async createNewDevice(deviceName) {
+		// Create device
+		await this.createDeviceAsync(deviceName, {
+			name: deviceName,
+			role: '',
+		});
+		// Create state for last update
+		await this.createStateAsync(deviceName, '', 'last_update', {
+			name: 'date/time of last transmitted value',
+			type: 'number',
+			role: 'date',
+			read: true,
+			write: false,
+		});
+		// Create channel "temperature"
+		await this.createChannelAsync(deviceName, 'temperature', {
+			name: 'temperature',
+			role: '',
+		});
+		// Create state for internal temperature
+		await this.createStateAsync(deviceName, 'temperature', 'internal', {
+			name: 'temperature of meat',
+			type: 'number',
+			unit: this.config.tempUnit,
+			role: 'value.temperature',
+			read: true,
+			write: false,
+		});
+		// Create state for ambient temperature
+		await this.createStateAsync(deviceName, 'temperature', 'ambient', {
+			name: 'temperature of ambient',
+			type: 'number',
+			unit: this.config.tempUnit,
+			role: 'value.temperature',
+			read: true,
+			write: false,
+		});
+		// Create state for target temperature
+		await this.createStateAsync(deviceName, 'temperature', 'target', {
+			name: 'target temperature of cook session',
+			type: 'number',
+			unit: this.config.tempUnit,
+			role: 'value.temperature',
+			read: true,
+			write: false,
+		});
+		// Create state for peak temperature
+		await this.createStateAsync(deviceName, 'temperature', 'peak', {
+			name: 'peak temperature of cook session',
+			type: 'number',
+			unit: this.config.tempUnit,
+			role: 'value.temperature.max',
+			read: true,
+			write: false,
+		});
+		// Create channel "cook"
+		await this.createChannelAsync(deviceName, 'cook', {
+			name: 'cook',
+			role: '',
+		});
+		// Create state for cook ID
+		await this.createStateAsync(deviceName, 'cook', 'id', {
+			name: 'ID of cook session',
+			type: 'string',
+			role: 'state',
+			read: true,
+			write: false,
+		});
+		// Create state for cook name
+		await this.createStateAsync(deviceName, 'cook', 'name', {
+			name: 'name of selected meat',
+			type: 'string',
+			role: 'state',
+			read: true,
+			write: false,
+		});
+		// Create state for cook state
+		await this.createStateAsync(deviceName, 'cook', 'state', {
+			name: 'state of cook session',
+			type: 'string',
+			role: 'state',
+			read: true,
+			write: false,
+		});
+		// Create state for elapsed time of cook session
+		await this.createStateAsync(deviceName, 'cook', 'time_elapsed', {
+			name: 'elapsed time of cook session',
+			type: 'number',
+			unit: 'sec',
+			role: 'value.interval',
+			read: true,
+			write: false,
+		});
+		// Create state for remaining time of cook session
+		await this.createStateAsync(deviceName, 'cook', 'time_remaining', {
+			name: 'remaining time of cook session',
+			type: 'number',
+			unit: 'sec',
+			role: 'value.interval',
+			read: true,
+			write: false,
+		});
+	}
+
+	// Read device data
+	async readDeviceData(jsonObj) {
+		// get exitsing devices
+		const devices = [];
+		const existingDevices = await this.getDevicesAsync();
+		for (const dev in existingDevices) {
+			devices.push(existingDevices[dev].common.name);
+		}
+
+		// cook states
+		let numCooking = 0;
+
+		// Set expire time of values
+		if (this.config.clearOldValues) {
+			this.expire = 2 * this.updateTimer;
+		}
+
+		// data from cloud
+		for (const dev in jsonObj.data.devices) {
+			const deviceData = jsonObj.data.devices[dev];
+			const deviceName = deviceData.id;
+
+			// Check if device allready exists or has to be created
+			if (!devices.includes(deviceName)) {
+				console.log('creating new device: ' + deviceName);
+				await this.createNewDevice(deviceName);
+			}
+
+			// cook states
+			if (deviceData.cook.state != '') {
+				numCooking += 1;
+			}
+
+			// save states
+			await this.setStateAsync(deviceName + '.last_update', {
+				val: deviceData.updated_at,
+				ack: true,
+				expire: this.expire,
+			});
+			await this.setStateAsync(deviceName + '.temperature.internal', {
+				val: deviceData.temperature.internal,
+				ack: true,
+				expire: this.expire,
+			});
+			await this.setStateAsync(deviceName + '.temperature.ambient', {
+				val: deviceData.temperature.ambient,
+				ack: true,
+				expire: this.expire,
+			});
+			await this.setStateAsync(deviceName + '.temperature.target', {
+				val: deviceData.cook.temperature.target,
+				ack: true,
+				expire: this.expire,
+			});
+			await this.setStateAsync(deviceName + '.temperature.peak', {
+				val: deviceData.cook.temperature.peak,
+				ack: true,
+				expire: this.expire,
+			});
+			await this.setStateAsync(deviceName + '.cook.id', {
+				val: deviceData.cook.id,
+				ack: true,
+				expire: this.expire,
+			});
+			await this.setStateAsync(deviceName + '.cook.name', {
+				val: deviceData.cook.name,
+				ack: true,
+				expire: this.expire,
+			});
+			await this.setStateAsync(deviceName + '.cook.state', {
+				val: deviceData.cook.state,
+				ack: true,
+				expire: this.expire,
+			});
+			await this.setStateAsync(deviceName + '.cook.time_elapsed', {
+				val: deviceData.cook.time.elapsed,
+				ack: true,
+				expire: this.expire,
+			});
+			await this.setStateAsync(deviceName + '.cook.time_remaining', {
+				val: deviceData.cook.time.remaining,
+				ack: true,
+				expire: this.expire,
+			});
+		}
+
+		// set updateTimer
+		if (numCooking > 0) {
+			this.updateTimer = this.config.updateCook;
+			this.setStateAsync('cookingActive', true, true);
+		} else {
+			this.updateTimer = this.config.updateIdle;
+			this.setStateAsync('cookingActive', false, true);
+		}
+	}
 }
 
 if (require.main !== module) {

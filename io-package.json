@@ -41,7 +41,7 @@
 			"pl": "Zintegruj termometr MEATER z ioBroker za pośrednictwem MEATER Cloud",
 			"zh-cn": "通过 MEATER Cloud 将您的 MEATER 温度计集成到 ioBroker"
 		},
-		"authors": ["sebastian <github.com@sebastiankoehler.de>"],
+		"authors": ["Standarduser"],
 		"keywords": ["meater", "thermometer", "wireless", "meat"],
 		"license": "MIT",
 		"platform": "Javascript/Node.js",
@@ -71,8 +71,13 @@
 		]
 	},
 	"native": {
-		"option1": true,
-		"option2": "42"
+		"username": "",
+		"password": "",
+		"language": "de",
+		"updateIdle": 60,
+		"updateCook": 2,
+		"tempUnit": "°C",
+		"clearOldValues": true
 	},
 	"objects": [],
 	"instanceObjects": [

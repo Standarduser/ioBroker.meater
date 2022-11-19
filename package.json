@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Integrate you MEATER Thermometer into ioBroker via MEATER Cloud",
   "author": {
-    "name": "sebastian",
-    "email": "github.com@sebastiankoehler.de"
+    "name": "Standarduser",
+    "email": "nobody@noserver.com"
   },
   "homepage": "https://github.com/Standarduser/ioBroker.meater",
   "license": "MIT",

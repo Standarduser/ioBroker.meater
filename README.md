@@ -1,4 +1,5 @@
 ![Logo](admin/meater.png)
+
 # ioBroker.meater
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.meater.svg)](https://www.npmjs.com/package/iobroker.meater)
@@ -10,99 +11,56 @@
 
 **Tests:** ![Test and Release](https://github.com/Standarduser/ioBroker.meater/workflows/Test%20and%20Release/badge.svg)
 
-## meater adapter for ioBroker
+## Meater adapter for ioBroker
 
-Integrate you MEATER Thermometer into ioBroker via MEATER Cloud
+This adapter brings your MEATER Wireless Meat Thermometer into ioBroker.
 
-## Developer manual
-This section is intended for the developer. It can be deleted later.
+It fetches the data from your probe via MEATER cloud API. You can configure 2 intervalls:
 
-### DISCLAIMER
+1. Update interval when all probes are idle (not cooking)
+2. Update interval when minimum 1 cooking session is startet
 
-Please make sure that you consider copyrights and trademarks when you use names or logos of a company and add a disclaimer to your README.
-You can check other adapters for examples or ask in the developer community. Using a name or logo of a company without permission may cause legal problems for you.
+## Prerequisites
 
-### Getting started
+You need to set up a MEATER cloud account (use the smartphone app) and activate MEATER Link.
 
-You are almost done, only a few steps left:
-1. Create a new repository on GitHub with the name `ioBroker.meater`
+## Configuration
 
-1. Push all files to the GitHub repo. The creator has already set up the local repository for you:  
-	```bash
-	git push origin main
-	```
-1. Add a new secret under https://github.com/Standarduser/ioBroker.meater/settings/secrets. It must be named `AUTO_MERGE_TOKEN` and contain a personal access token with push access to the repository, e.g. yours. You can create a new token under https://github.com/settings/tokens.
+-   `Username for MEATER cloud`: your registered e-mail adress
+-   `Password for MEATER cloud`: the password you used for cloud access
+-   `Language`: Some (not all!) values will be translated, e.g. the name of meat
+-   `Update interval idle`: time in seconds how often data from cloud should be fetched
+-   `Update interval cook`: time is seconds how often data from cloud should be fetched when a cook senssion is active
+-   `Temperature unit`: set this to the same unit as you are using in the app
+-   `Clear old values`: the MEATER cloud API just sends values for active probes/running cooking sessions. If a session has ended you don't get updates of temperature and status. Activate this checkbox to clear old values which got no update to avoid misunderstandigs.
 
-1. Head over to [main.js](main.js) and start programming!
+## Use the adapter
 
-### Best Practices
-We've collected some [best practices](https://github.com/ioBroker/ioBroker.repositories#development-and-coding-best-practices) regarding ioBroker development and coding in general. If you're new to ioBroker or Node.js, you should
-check them out. If you're already experienced, you should also take a look at them - you might learn something new :)
+After set-up the adapter it will login automatically into MEATER cloud and fetch its data.
 
-### Scripts in `package.json`
-Several npm scripts are predefined for your convenience. You can run them using `npm run <scriptname>`
-| Script name | Description |
-|-------------|-------------|
-| `test:js` | Executes the tests you defined in `*.test.js` files. |
-| `test:package` | Ensures your `package.json` and `io-package.json` are valid. |
-| `test:integration` | Tests the adapter startup with an actual instance of ioBroker. |
-| `test` | Performs a minimal test run on package files and your tests. |
-| `check` | Performs a type-check on your code (without compiling anything). |
-| `lint` | Runs `ESLint` to check your code for formatting errors and potential bugs. |
-| `translate` | Translates texts in your adapter to all required languages, see [`@iobroker/adapter-dev`](https://github.com/ioBroker/adapter-dev#manage-translations) for more details. |
-| `release` | Creates a new release, see [`@alcalzone/release-script`](https://github.com/AlCalzone/release-script#usage) for more details. |
+If you don't see any probe and/or values start a cooking session and wait for a moment. You may have to heat the probe to get any values (hot water works fine for testing).
 
-### Writing tests
-When done right, testing code is invaluable, because it gives you the 
-confidence to change your code while knowing exactly if and when 
-something breaks. A good read on the topic of test-driven development 
-is https://hackernoon.com/introduction-to-test-driven-development-tdd-61a13bc92d92. 
-Although writing tests before the code might seem strange at first, but it has very 
-clear upsides.
+## DISCLAIMER
 
-The template provides you with basic tests for the adapter startup and package files.
-It is recommended that you add your own tests into the mix.
-
-### Publishing the adapter
-Using GitHub Actions, you can enable automatic releases on npm whenever you push a new git tag that matches the form 
-`v<major>.<minor>.<patch>`. We **strongly recommend** that you do. The necessary steps are described in `.github/workflows/test-and-release.yml`.
-
-Since you installed the release script, you can create a new
-release simply by calling:
-```bash
-npm run release
-```
-Additional command line options for the release script are explained in the
-[release-script documentation](https://github.com/AlCalzone/release-script#command-line).
-
-To get your adapter released in ioBroker, please refer to the documentation 
-of [ioBroker.repositories](https://github.com/ioBroker/ioBroker.repositories#requirements-for-adapter-to-get-added-to-the-latest-repository).
-
-### Test the adapter manually with dev-server
-Since you set up `dev-server`, you can use it to run, test and debug your adapter.
-
-You may start `dev-server` by calling from your dev directory:
-```bash
-dev-server watch
-```
-
-The ioBroker.admin interface will then be available at http://localhost:8081/
-
-Please refer to the [`dev-server` documentation](https://github.com/ioBroker/dev-server#command-line) for more details.
+MEATER® is a trademark of Apption Labs™ Limited.
+This adapter uses the [public API](https://github.com/apption-labs/meater-cloud-public-rest-api)
 
 ## Changelog
+
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
 
 ### **WORK IN PROGRESS**
-* (sebastian) initial release
+
+-   (Standarduser) initial release
 
 ## License
+
 MIT License
 
-Copyright (c) 2022 sebastian <github.com@sebastiankoehler.de>
+Copyright (c) 2022 Standarduser
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

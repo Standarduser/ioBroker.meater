@@ -2,14 +2,87 @@
 	"i18n": true,
 	"type": "panel",
 	"items": {
-		"option1": {
-			"type": "checkbox",
-			"label": "option1",
+		"headerCredentials": {
+			"type": "header",
+			"text": "Meater cloud credentials",
+			"size": 2
+		},
+		"username": {
+			"type": "text",
+			"label": "Username for Meater cloud (registered E-mail)",
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 6
+		},
+		"password": {
+			"type": "password",
+			"label": "Password for Meater cloud",
+			"xs": 12,
+			"sm": 12,
+			"md": 6,
+			"lg": 6,
 			"newLine": true
 		},
-		"option2": {
-			"type": "text",
-			"label": "option2",
+		"headerConfig": {
+			"type": "header",
+			"text": "Configuration",
+			"size": 2
+		},
+		"language": {
+			"type": "select",
+			"label": "Language",
+			"options": [
+				{ "label": { "en": "English" }, "value": "en" },
+				{ "label": { "en": "German" }, "value": "de" }
+			],
+			"xs": 2,
+			"sm": 2,
+			"md": 2,
+			"lg": 2,
+			"newLine": true
+		},
+		"updateIdle": {
+			"type": "number",
+			"min": 1,
+			"max": 300,
+			"label": "Update interval idle (sec)",
+			"xs": 2,
+			"sm": 2,
+			"md": 2,
+			"lg": 2,
+			"newLine": true
+		},
+		"updateCook": {
+			"type": "number",
+			"min": 1,
+			"max": 300,
+			"label": "Update interval cook (sec)",
+			"xs": 2,
+			"sm": 2,
+			"md": 2,
+			"lg": 2
+		},
+		"tempUnit": {
+			"type": "select",
+			"label": "Temperature unit",
+			"options": [
+				{ "label": "°C", "value": "°C" },
+				{ "label": "°F", "value": "°F" }
+			],
+			"xs": 2,
+			"sm": 2,
+			"md": 2,
+			"lg": 2,
+			"newLine": true
+		},
+		"clearOldValues": {
+			"type": "checkbox",
+			"label": "Clear old values",
+			"xs": 2,
+			"sm": 2,
+			"md": 2,
+			"lg": 2,
 			"newLine": true
 		}
 	}
