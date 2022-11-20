@@ -101,6 +101,84 @@
 				"def": false
 			},
 			"native": {}
+		},
+		{
+			"_id": "info.token",
+			"type": "state",
+			"common": {
+				"role": "state",
+				"name": "Meater cloud auth token",
+				"type": "string",
+				"read": true,
+				"write": false,
+				"def": ""
+			},
+			"native": {}
+		},
+		{
+			"_id": "info.userId",
+			"type": "state",
+			"common": {
+				"role": "state",
+				"name": "User ID for Meater cloud",
+				"type": "string",
+				"read": true,
+				"write": false,
+				"def": ""
+			},
+			"native": {}
+		},
+		{
+			"_id": "rawData",
+			"type": "state",
+			"common": {
+				"role": "JSON",
+				"name": "Last answer from Meater cloud",
+				"type": "string",
+				"read": true,
+				"write": false,
+				"def": ""
+			},
+			"native": {}
+		},
+		{
+			"_id": "status",
+			"type": "state",
+			"common": {
+				"role": "state",
+				"name": "Status of cloud last API call",
+				"type": "string",
+				"read": true,
+				"write": false,
+				"def": ""
+			},
+			"native": {}
+		},
+		{
+			"_id": "statusCode",
+			"type": "state",
+			"common": {
+				"role": "state",
+				"name": "Status of cloud last API call as number",
+				"type": "number",
+				"read": true,
+				"write": false,
+				"def": null
+			},
+			"native": {}
+		},
+		{
+			"_id": "cookingActive",
+			"type": "state",
+			"common": {
+				"role": "indicator",
+				"name": "If cooking is active with one or more probes",
+				"type": "boolean",
+				"read": true,
+				"write": false,
+				"def": false
+			},
+			"native": {}
 		}
 	]
 }
