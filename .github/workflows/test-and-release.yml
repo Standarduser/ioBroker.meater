@@ -69,9 +69,18 @@ jobs:
 
         steps:
             - uses: ioBroker/testing-action-deploy@v1
+<<<<<<< HEAD
               with:
                   node-version: '16.x'
                   # Uncomment the following line if your adapter cannot be installed using 'npm ci'
                   # install-command: 'npm install'
                   npm-token: ${{ secrets.NPM_TOKEN }}
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+=======
+            with:
+                node-version: '16.x'
+                # Uncomment the following line if your adapter cannot be installed using 'npm ci'
+                # install-command: 'npm install'
+                npm-token: ${{ secrets.NPM_TOKEN }}
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> b86093895eab04b45454bb26500c00c8c85cac20
