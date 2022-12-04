@@ -23,6 +23,7 @@ class Meater extends utils.Adapter {
 		this.statusCode = 0;
 		this.expire = 0;
 		this.updateTimer = 60;
+		this.loginFailure = false;
 	}
 
 	async onReady() {
@@ -50,44 +51,50 @@ class Meater extends utils.Adapter {
 	// Login
 	async login() {
 		if (this.config.username == '' || this.config.password == '') {
-			this.log.info('Credentials for cloud access missing. Please go to adapter settings.');
+			this.log.error('Credentials for cloud access missing. Please go to adapter settings.');
 		} else {
 			this.log.debug('Send login to Meater cloud');
-			fetch(
-				meaterUrlLogin,
-				{
-					method: 'POST',
-					headers: { 'content-type': 'application/json' },
-					payload: JSON.stringify({
-						email: this.config.username,
-						password: this.config.password,
-					}),
-				},
-				async (error, response, result) => {
-					// Log received data
-					this.log.debug('result from login: ' + result);
+			try {
+				fetch(
+					meaterUrlLogin,
+					{
+						method: 'POST',
+						headers: { 'content-type': 'application/json' },
+						payload: JSON.stringify({
+							email: this.config.username,
+							password: this.config.password,
+						}),
+					},
+					async (error, response, result) => {
+						// Log received data
+						this.log.debug('result from login: ' + result);
 
-					// Save into states
-					await this.setStateAsync('rawData', result.toString(), true);
+						// Save into states
+						await this.setStateAsync('rawData', result.toString(), true);
 
-					this.token = JSON.parse(result).data.token;
-					await this.setStateAsync('info.token', this.token, true);
+						// Handle status code
+						await this.handleStatusCode(JSON.parse(result));
+						if (this.statusCode == 200) {
+							this.loginFailure = false;
+							this.token = JSON.parse(result).data.token;
+							await this.setStateAsync('info.token', this.token, true);
 
-					await this.setStateAsync('info.userId', JSON.parse(result).data.userId, true);
-					await this.setStateAsync('status', JSON.parse(result).status, true);
-
-					await this.handleStatusCode(JSON.parse(result));
-
-					if (this.statusCode == 200) {
-						this.readFromCloud();
-					} else {
-						// If something went wrong try again in ...seconds
-						this.timeoutLogin = setTimeout(() => {
-							this.login();
-						}, this.updateTimer * 1000);
-					}
-				},
-			);
+							await this.setStateAsync('info.userId', JSON.parse(result).data.userId, true);
+							await this.setStateAsync('status', JSON.parse(result).status, true);
+							this.readFromCloud();
+						} else {
+							// If something went wrong...
+							this.loginFailure = true;
+							// try again in <updateTimer> seconds
+							this.timeoutLogin = setTimeout(() => {
+								this.login();
+							}, this.updateTimer * 1000);
+						}
+					},
+				);
+			} catch (error) {
+				this.log.error('Got an error while logging in: ' + error);
+			}
 		}
 	}
 
@@ -108,7 +115,13 @@ class Meater extends utils.Adapter {
 			case 401: // Unauthorized
 				this.log.info('Statuscode 401 --> Unauthorized --> login');
 				this.setState('info.connection', false, true);
-				await this.login();
+				// If login went wrong raise updateTimer
+				if (this.loginFailure) {
+					this.updateTimer = 600; //sec
+					// login is selfcalling
+				} else {
+					await this.login();
+				}
 				break;
 			case 404: // Not Found
 				this.log.warn('Statuscode 404 --> Not Found');
@@ -132,31 +145,34 @@ class Meater extends utils.Adapter {
 		// clear timeout to prevent loop in case of call from login if last call failed
 		clearTimeout(this.timeoutReadFromCloud);
 		this.log.debug('fetch data from cloud');
+		try {
+			fetch(
+				meaterUrl,
+				{
+					headers: { Authorization: 'Bearer ' + this.token, 'Accept-Language': this.config.language },
+				},
+				async (error, response, result) => {
+					// Log received data
+					this.log.debug('result from cloud: ' + result);
 
-		fetch(
-			meaterUrl,
-			{
-				headers: { Authorization: 'Bearer ' + this.token, 'Accept-Language': this.config.language },
-			},
-			async (error, response, result) => {
-				// Log received data
-				this.log.debug('result from cloud: ' + result);
+					// Save states
+					this.setStateAsync('rawData', result.toString(), true);
+					this.setStateAsync('status', JSON.parse(result).status, true);
 
-				// Save states
-				this.setStateAsync('rawData', result.toString(), true);
-				this.setStateAsync('status', JSON.parse(result).status, true);
+					await this.handleStatusCode(JSON.parse(result));
 
-				await this.handleStatusCode(JSON.parse(result));
-
-				if (this.statusCode == 200) {
-					await this.readDeviceData(JSON.parse(result));
-				}
-				// If everthing is done run again in ...seconds
-				this.timeoutReadFromCloud = setTimeout(() => {
-					this.readFromCloud();
-				}, this.updateTimer * 1000);
-			},
-		);
+					if (this.statusCode == 200) {
+						await this.readDeviceData(JSON.parse(result));
+					}
+					// If everthing is done run again in <updateTimer> seconds
+					this.timeoutReadFromCloud = setTimeout(() => {
+						this.readFromCloud();
+					}, this.updateTimer * 1000);
+				},
+			);
+		} catch (error) {
+			this.log.error('Got an error while fetching data from cloud: ' + error);
+		}
 	}
 
 	// Create new device

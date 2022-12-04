@@ -1,5 +1,14 @@
 {
 	"meater adapter settings": "Impostazioni dell'adattatore per meater",
-	"option1": "opzione 1",
-	"option2": "opzione 2"
+	"txtHeaderCredentials": "Credenziali cloud di Meater",
+	"lblUsername": "Nome utente per Meater cloud (e-mail registrata)",
+	"lblPassword": "Password per il cloud Meater",
+	"txtHeaderConfig": "Configurazione",
+	"lblLanguage": "Lingua",
+	"lblUpdateIdle": "Intervallo di aggiornamento inattivo (sec)",
+	"lblUpdateCook": "Aggiorna intervallo di cottura (sec)",
+	"lblTempUnit": "Unità di temperatura",
+	"txtTempUnitDescription": "Unità di temperatura: utilizzata per creare unità negli stati ioBroker. Impostalo sulla stessa unità che stai utilizzando nell'app. Se l'unità viene modificata dopo la creazione degli stati, eliminare tutti gli stati del probe e riavviare l'adattatore.",
+	"lblClearOldValues": "Cancella vecchi valori",
+	"txtClearOldValuesDescription": "Cancella vecchi valori: L'API cloud MEATER invia solo valori per sonde attive/sessioni di cottura in corso. Se una sessione è terminata non ricevi aggiornamenti di temperatura e stato. Attiva questa casella di controllo per cancellare i vecchi valori che non sono stati aggiornati per evitare fraintendimenti."
 }

@@ -1,5 +1,14 @@
 {
 	"meater adapter settings": "Adaptereinstellungen für meater",
-	"option1": "Option 1",
-	"option2": "Option 2"
+	"txtHeaderCredentials": "Meater-Cloud-Anmeldeinformationen",
+	"lblUsername": "Benutzername für Meater Cloud (registrierte E-Mail)",
+	"lblPassword": "Passwort für die Meater-Cloud",
+	"txtHeaderConfig": "Einstellungen",
+	"lblLanguage": "Sprache",
+	"lblUpdateIdle": "Aktualisierungsintervall im Leerlauf (Sek.)",
+	"lblUpdateCook": "Aktualisierungsintervall beim Kochen (Sek.)",
+	"lblTempUnit": "Temperatureinheit",
+	"txtTempUnitDescription": "Temperatureinheit: Wird verwendet, um Einheiten in ioBroker-Zuständen zu erstellen. Stellen Sie hier dieselbe Einheit ein, die Sie in der App verwenden. Wenn die Einheit nach dem Erstellen von Zuständen geändert wird, löschen Sie alle Sondenzustände und starten Sie den Adapter neu.",
+	"lblClearOldValues": "Alte Werte löschen",
+	"txtClearOldValuesDescription": "Alte Werte löschen: Die MEATER Cloud API sendet nur Werte für aktive Sonden/laufende Kochsessions. Wenn eine Sitzung beendet ist, erhalten Sie keine Temperatur- und Statusaktualisierungen. Aktivieren Sie dieses Kontrollkästchen, um alte Werte zu löschen, die nicht aktualisiert wurden, um Missverständnisse zu vermeiden."
 }

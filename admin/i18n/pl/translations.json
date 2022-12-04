@@ -1,5 +1,14 @@
 {
 	"meater adapter settings": "Ustawienia adaptera dla meater",
-	"option1": "opcja 1",
-	"option2": "Opcja 2"
+	"txtHeaderCredentials": "Poświadczenia w chmurze Meater",
+	"lblUsername": "Nazwa użytkownika chmury Meater (zarejestrowany adres e-mail)",
+	"lblPassword": "Hasło do chmury Meatera",
+	"txtHeaderConfig": "Konfiguracja",
+	"lblLanguage": "Język",
+	"lblUpdateIdle": "Bezczynność interwału aktualizacji (s)",
+	"lblUpdateCook": "Aktualizacja interwału gotowania (s)",
+	"lblTempUnit": "Jednostka temperatury",
+	"txtTempUnitDescription": "Jednostka temperatury: Służy do tworzenia jednostek w stanach ioBroker. Ustaw tę samą jednostkę, której używasz w aplikacji. Jeśli jednostka zostanie zmieniona po utworzeniu stanów, usuń wszystkie stany sondy i zrestartuj adapter.",
+	"lblClearOldValues": "Wyczyść stare wartości",
+	"txtClearOldValuesDescription": "Wyczyść stare wartości: Interfejs API chmury MEATER wysyła tylko wartości dla aktywnych sond/rozpoczętych sesji gotowania. Jeśli sesja się zakończyła, nie otrzymujesz aktualizacji temperatury i stanu. Aktywuj to pole wyboru, aby usunąć stare wartości, które nie zostały zaktualizowane, aby uniknąć nieporozumień."
 }

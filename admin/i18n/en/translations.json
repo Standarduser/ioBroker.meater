@@ -1,5 +1,14 @@
 {
 	"meater adapter settings": "Adapter settings for meater",
-	"option1": "option1",
-	"option2": "option2"
+	"txtHeaderCredentials": "Meater cloud credentials",
+	"lblUsername": "Username for Meater cloud (registered E-mail)",
+	"lblPassword": "Password for Meater cloud",
+	"txtHeaderConfig": "Configuration",
+	"lblLanguage": "Language",
+	"lblUpdateIdle": "Update interval idle (sec)",
+	"lblUpdateCook": "Update interval cook (sec)",
+	"lblTempUnit": "Temperature unit",
+	"txtTempUnitDescription": "Temperature unit: Used to create unit in ioBroker states. Set this to the same unit as you are using in the app. If unit is changed after creating states, delete all probe states and restart adapter.",
+	"lblClearOldValues": "Clear old values",
+	"txtClearOldValuesDescription": "Clear old values: The MEATER cloud API just sends values for active probes/running cooking sessions. If a session has ended you don't get updates of temperature and status. Activate this checkbox to clear old values which got no update to avoid misunderstandigs."
 }

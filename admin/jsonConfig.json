@@ -4,12 +4,12 @@
 	"items": {
 		"headerCredentials": {
 			"type": "header",
-			"text": "Meater cloud credentials",
+			"text": "txtHeaderCredentials",
 			"size": 2
 		},
 		"username": {
 			"type": "text",
-			"label": "Username for Meater cloud (registered E-mail)",
+			"label": "lblUsername",
 			"xs": 12,
 			"sm": 12,
 			"md": 6,
@@ -17,7 +17,7 @@
 		},
 		"password": {
 			"type": "password",
-			"label": "Password for Meater cloud",
+			"label": "lblPassword",
 			"xs": 12,
 			"sm": 12,
 			"md": 6,
@@ -26,12 +26,12 @@
 		},
 		"headerConfig": {
 			"type": "header",
-			"text": "Configuration",
+			"text": "txtHeaderConfig",
 			"size": 2
 		},
 		"language": {
 			"type": "select",
-			"label": "Language",
+			"label": "lblLanguage",
 			"options": [
 				{ "label": { "en": "English" }, "value": "en" },
 				{ "label": { "en": "German" }, "value": "de" }
@@ -46,7 +46,7 @@
 			"type": "number",
 			"min": 1,
 			"max": 300,
-			"label": "Update interval idle (sec)",
+			"label": "lblUpdateIdle",
 			"xs": 2,
 			"sm": 2,
 			"md": 2,
@@ -57,7 +57,7 @@
 			"type": "number",
 			"min": 1,
 			"max": 300,
-			"label": "Update interval cook (sec)",
+			"label": "lblUpdateCook",
 			"xs": 2,
 			"sm": 2,
 			"md": 2,
@@ -65,7 +65,7 @@
 		},
 		"tempUnit": {
 			"type": "select",
-			"label": "Temperature unit",
+			"label": "lblTempUnit",
 			"options": [
 				{ "label": "°C", "value": "°C" },
 				{ "label": "°F", "value": "°F" }
@@ -76,14 +76,30 @@
 			"lg": 2,
 			"newLine": true
 		},
+		"tempUnitDescription": {
+			"type": "staticText",
+			"text": "txtTempUnitDescription",
+			"xs": 2,
+			"sm": 3,
+			"md": 4,
+			"lg": 4
+		},
 		"clearOldValues": {
 			"type": "checkbox",
-			"label": "Clear old values",
+			"label": "lblClearOldValues",
 			"xs": 2,
 			"sm": 2,
 			"md": 2,
 			"lg": 2,
 			"newLine": true
+		},
+		"clearOldValuesDescription": {
+			"type": "staticText",
+			"text": "txtClearOldValuesDescription",
+			"xs": 2,
+			"sm": 3,
+			"md": 4,
+			"lg": 4
 		}
 	}
 }

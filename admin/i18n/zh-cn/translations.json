@@ -1,5 +1,14 @@
 {
 	"meater adapter settings": "meater的适配器设置",
-	"option1": "选项1",
-	"option2": "选项2"
+	"txtHeaderCredentials": "肉云凭证",
+	"lblUsername": "米特云用户名（注册邮箱）",
+	"lblPassword": "米特云密码",
+	"txtHeaderConfig": "配置",
+	"lblLanguage": "语",
+	"lblUpdateIdle": "更新间隔空闲（秒）",
+	"lblUpdateCook": "更新时间间隔（秒）",
+	"lblTempUnit": "温度单位",
+	"txtTempUnitDescription": "温度单位：用于在 ioBroker 状态中创建单位。将其设置为与您在应用程序中使用的单位相同。如果在创建状态后更改了单位，请删除所有探测器状态并重新启动适配器。",
+	"lblClearOldValues": "清除旧值",
+	"txtClearOldValuesDescription": "清除旧值: MEATER 云 API 仅发送活动探测/运行烹饪会话的值。如果会话结束，您不会收到温度和状态的更新。激活此复选框以清除没有更新的旧值以避免误解。"
 }

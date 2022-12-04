@@ -31,7 +31,7 @@ You need to set up a MEATER cloud account (use the smartphone app) and activate 
 -   `Language`: Some (not all!) values will be translated, e.g. the name of meat
 -   `Update interval idle`: time in seconds how often data from cloud should be fetched
 -   `Update interval cook`: time is seconds how often data from cloud should be fetched when a cook senssion is active
--   `Temperature unit`: set this to the same unit as you are using in the app
+-   `Temperature unit`: Used to create unit in ioBroker states. Set this to the same unit as you are using in the app. If unit is changed after creating states, delete all probe states and restart adapter
 -   `Clear old values`: the MEATER cloud API just sends values for active probes/running cooking sessions. If a session has ended you don't get updates of temperature and status. Activate this checkbox to clear old values which got no update to avoid misunderstandigs.
 
 ## Use the adapter
@@ -51,6 +51,12 @@ This adapter uses the [public API](https://github.com/apption-labs/meater-cloud-
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+-   (Standarduser) Save password encrypted => please reenter password in adapter config
+-   (Standarduser) Some minor improvements
+
 ### 0.1.0-alpha.0 (2022-11-21)
 
 -   (Standarduser) First test release

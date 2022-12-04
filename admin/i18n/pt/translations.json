@@ -1,5 +1,14 @@
 {
 	"meater adapter settings": "Configurações do adaptador para meater",
-	"option1": "Opção 1",
-	"option2": "opção 2"
+	"txtHeaderCredentials": "Credenciais de nuvem Meater",
+	"lblUsername": "Nome de usuário para nuvem Meater (e-mail registrado)",
+	"lblPassword": "Senha para nuvem Meater",
+	"txtHeaderConfig": "Configuração",
+	"lblLanguage": "Linguagem",
+	"lblUpdateIdle": "Intervalo de atualização ocioso (seg)",
+	"lblUpdateCook": "Atualizar cozimento de intervalo (seg)",
+	"lblTempUnit": "Unidade de temperatura",
+	"txtTempUnitDescription": "Unidade de temperatura: Usado para criar unidades nos estados do ioBroker. Defina isso para a mesma unidade que você está usando no aplicativo. Se a unidade for alterada após a criação dos estados, exclua todos os estados da sonda e reinicie o adaptador.",
+	"lblClearOldValues": "Limpar valores antigos",
+	"txtClearOldValuesDescription": "Limpar valores antigos: A API de nuvem MEATER apenas envia valores para sondas ativas/sessões de cozimento em execução. Se uma sessão terminou, você não recebe atualizações de temperatura e status. Ative esta caixa de seleção para limpar os valores antigos que não foram atualizados para evitar mal-entendidos."
 }

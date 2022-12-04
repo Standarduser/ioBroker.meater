@@ -1,5 +1,14 @@
 {
 	"meater adapter settings": "Adapterinstellingen voor meater",
-	"option1": "Optie 1",
-	"option2": "Optie 2"
+	"txtHeaderCredentials": "Meater-cloudreferenties",
+	"lblUsername": "Gebruikersnaam voor Meater cloud (aangetekende e-mail)",
+	"lblPassword": "Wachtwoord voor Meater-cloud",
+	"txtHeaderConfig": "Configuratie",
+	"lblLanguage": "Taal",
+	"lblUpdateIdle": "Update-interval inactief (sec)",
+	"lblUpdateCook": "Interval koken bijwerken (sec)",
+	"lblTempUnit": "Temperatuureenheid",
+	"txtTempUnitDescription": "Temperatuureenheid: wordt gebruikt om eenheden te creëren in ioBroker-staten. Stel deze in op dezelfde eenheid als die je gebruikt in de app. Als de eenheid wordt gewijzigd na het maken van statussen, verwijdert u alle sondestatussen en start u de adapter opnieuw op.",
+	"lblClearOldValues": "Wis oude waarden",
+	"txtClearOldValuesDescription": "Wis oude waarden: De MEATER-cloud-API verzendt alleen waarden voor actieve sondes/lopende kooksessies. Als een sessie is beëindigd, krijg je geen updates van temperatuur en status. Activeer dit selectievakje om oude waarden te wissen die niet zijn bijgewerkt om misverstanden te voorkomen."
 }
