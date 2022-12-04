@@ -1,6 +1,6 @@
 {
   "name": "iobroker.meater",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0",
   "description": "Integrate you MEATER Thermometer into ioBroker via MEATER Cloud",
   "author": {
     "name": "Standarduser",
