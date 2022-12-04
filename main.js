@@ -42,8 +42,12 @@ class Meater extends utils.Adapter {
 	 */
 	onUnload(callback) {
 		try {
-			this.clearTimeout(this.timeoutReadFromCloud);
-			this.clearTimeout(this.timeoutLogin);
+			if (this.timeoutReadFromCloud) {
+				this.clearTimeout(this.timeoutReadFromCloud);
+			}
+			if (this.timeoutLogin) {
+				this.clearTimeout(this.timeoutLogin);
+			}
 			callback();
 		} catch (e) {
 			callback();
@@ -145,7 +149,9 @@ class Meater extends utils.Adapter {
 	// Read data from Meater cloud
 	async readFromCloud() {
 		// clear timeout to prevent loop in case of call from login if last call failed
-		this.clearTimeout(this.timeoutReadFromCloud);
+		if (this.timeoutReadFromCloud) {
+			this.clearTimeout(this.timeoutReadFromCloud);
+		}
 		this.log.debug('fetch data from cloud');
 		try {
 			fetch(
