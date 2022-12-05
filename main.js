@@ -103,8 +103,10 @@ class Meater extends utils.Adapter {
 							}
 						} else {
 							this.log.error('failed reading data from cloud');
-							this.log.error('got following error from server: ' + error);
-							this.log.error('got following response from server: ' + response);
+							if (error) {
+								this.log.error('got following error from server: ' + JSON.stringify(error));
+							}
+							this.log.error('got following response from server: ' + JSON.stringify(response));
 						}
 					},
 				);
@@ -193,8 +195,10 @@ class Meater extends utils.Adapter {
 						}, this.updateTimer * 1000);
 					} else {
 						this.log.error('failed reading data from cloud');
-						this.log.error('got following error from server: ' + error);
-						this.log.error('got following response from server: ' + response);
+						if (error) {
+							this.log.error('got following error from server: ' + JSON.stringify(error));
+						}
+						this.log.error('got following response from server: ' + JSON.stringify(response));
 					}
 				},
 			);
