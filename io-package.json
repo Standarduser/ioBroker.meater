@@ -1,239 +1,228 @@
 {
-  "common": {
-    "name": "meater",
-    "version": "0.1.1",
-    "news": {
-      "0.1.1": {
-        "en": "Improved error handling for fetch",
-        "de": "Verbesserte Fehlerbehandlung für Fetch",
-        "ru": "Улучшена обработка ошибок для fetch",
-        "pt": "Melhor manuseio de erros para busca",
-        "nl": "Improviserende fouten om te halen",
-        "fr": "Amélioration de la manipulation des erreurs pour fetch",
-        "it": "Miglioramento della gestione degli errori per fetch",
-        "es": "Mejor manejo de errores para embrague",
-        "pl": "Poprawianie błędów w uchwyceniach dla przyzwyczajenia",
-        "uk": "Поліпшення обробки помилок для зчеплення",
-        "zh-cn": "B. 改善女巫的错误处理"
-      },
-      "0.1.0": {
-        "en": "Save password encrypted => please reenter password in adapter config\nSome minor improvements",
-        "de": "Passwort verschlüsselt speichern => bitte Passwort eingeben in Adapter config\nEinige kleinere Verbesserungen",
-        "ru": "Сохранить пароль зашифрован => пожалуйста, повторите пароль в адаптер config\nНекоторые незначительные улучшения",
-        "pt": "Salvar senha criptografada => por favor reinserir senha no adaptador config\nAlgumas pequenas melhorias",
-        "nl": "Bewaar het wachtwoord encrypted Verwijder het wachtwoord\nWat kleine verbetering",
-        "fr": "Enregistrer le mot de passe crypté = s'il vous plaît reenter mot de passe dans la configuration de l'adaptateur\nQuelques améliorations mineures",
-        "it": "Salva password crittografata = > si prega di reinserire la password nella configurazione dell'adattatore\nAlcuni miglioramenti minori",
-        "es": "Guardar contraseña cifrada = confianza por favor vuelva a introducir contraseña en el configuración del adaptador\nAlgunas mejoras menores",
-        "pl": "Wykorzystywanie haseł Czy warto przejść\nNiektóre drobne poprawy",
-        "uk": "Зашифрований паролем => будь ласка, reenter пароль в конфігурації адаптера\nДеякі незначні поліпшення",
-        "zh-cn": "Save密码 加密= 请重新写成适应器的密码\n有些微小的改进"
-      },
-      "0.1.0-alpha.0": {
-        "en": "First test release",
-        "de": "Erstes Test-Release",
-        "ru": "Первый тестовый релиз",
-        "pt": "Primeiro lançamento de teste",
-        "nl": "Eerste test",
-        "fr": "Premier essai",
-        "it": "Primo rilascio di prova",
-        "es": "Primera prueba de liberación",
-        "pl": "Pierwsza wersja testowa",
-        "uk": "Перший тестовий реліз",
-        "zh-cn": "第一次试验释放"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "zh-cn": "首次出版",
-        "uk": "початковий випуск"
-      }
-    },
-    "title": "MEATER Wireless Smart Meat Thermometer",
-    "titleLang": {
-      "en": "MEATER Wireless Smart Meat Thermometer",
-      "de": "MEATER Wireless Smart Fleischthermometer",
-      "ru": "Беспроводной умный термометр для мяса MEATER",
-      "pt": "Termômetro de carne inteligente sem fio MEATER",
-      "nl": "MEATER Draadloze slimme vleesthermometer",
-      "fr": "Thermomètre à viande intelligent sans fil MEATER",
-      "it": "MEATER Termometro per carne intelligente wireless",
-      "es": "Termómetro inalámbrico inteligente para carne MEATER",
-      "pl": "Bezprzewodowy inteligentny termometr do mięsa MEATER",
-      "zh-cn": "MEATER 无线智能肉类温度计",
-      "uk": "Бездротовий смарт-термометр для м'яса MEATER"
-    },
-    "desc": {
-      "en": "Integrate you MEATER Thermometer into ioBroker via MEATER Cloud",
-      "de": "Integrieren Sie Ihr MEATER Thermometer über die MEATER Cloud in ioBroker",
-      "ru": "Интегрируйте свой термометр MEATER в ioBroker через MEATER Cloud",
-      "pt": "Integre seu MEATER Thermometer ao ioBroker via MEATER Cloud",
-      "nl": "Integreer uw MEATER-thermometer in ioBroker via MEATER Cloud",
-      "fr": "Intégrez votre thermomètre MEATER dans ioBroker via MEATER Cloud",
-      "it": "Integra il tuo termometro MEATER in ioBroker tramite MEATER Cloud",
-      "es": "Integre su termómetro MEATER en ioBroker a través de MEATER Cloud",
-      "pl": "Zintegruj termometr MEATER z ioBroker za pośrednictwem MEATER Cloud",
-      "zh-cn": "通过 MEATER Cloud 将您的 MEATER 温度计集成到 ioBroker",
-      "uk": "Інтегруйте свій термометр MEATER в ioBroker через хмару MEATER"
-    },
-    "authors": [
-      "Standarduser"
-    ],
-    "keywords": [
-      "meater",
-      "thermometer",
-      "wireless",
-      "meat"
-    ],
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "main": "main.js",
-    "icon": "meater.png",
-    "enabled": true,
-    "extIcon": "https://raw.githubusercontent.com/Standarduser/ioBroker.meater/main/admin/meater.png",
-    "readme": "https://github.com/Standarduser/ioBroker.meater/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "daemon",
-    "type": "household",
-    "compact": true,
-    "connectionType": "cloud",
-    "dataSource": "poll",
-    "adminUI": {
-      "config": "json"
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=3.3.22"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=5.1.13"
-      }
-    ]
-  },
-  "encryptedNative": [
-    "password"
-  ],
-  "protectedNative": [
-    "password"
-  ],
-  "native": {
-    "username": "",
-    "password": "",
-    "language": "de",
-    "updateIdle": 60,
-    "updateCook": 2,
-    "tempUnit": "°C",
-    "clearOldValues": true
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "role": "indicator.connected",
-        "name": "Device or service connected",
-        "type": "boolean",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.token",
-      "type": "state",
-      "common": {
-        "role": "state",
-        "name": "Meater cloud auth token",
-        "type": "string",
-        "read": true,
-        "write": false,
-        "def": ""
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.userId",
-      "type": "state",
-      "common": {
-        "role": "state",
-        "name": "User ID for Meater cloud",
-        "type": "string",
-        "read": true,
-        "write": false,
-        "def": ""
-      },
-      "native": {}
-    },
-    {
-      "_id": "rawData",
-      "type": "state",
-      "common": {
-        "role": "JSON",
-        "name": "Last answer from Meater cloud",
-        "type": "string",
-        "read": true,
-        "write": false,
-        "def": ""
-      },
-      "native": {}
-    },
-    {
-      "_id": "status",
-      "type": "state",
-      "common": {
-        "role": "state",
-        "name": "Status of cloud last API call",
-        "type": "string",
-        "read": true,
-        "write": false,
-        "def": ""
-      },
-      "native": {}
-    },
-    {
-      "_id": "statusCode",
-      "type": "state",
-      "common": {
-        "role": "state",
-        "name": "Status of cloud last API call as number",
-        "type": "number",
-        "read": true,
-        "write": false,
-        "def": null
-      },
-      "native": {}
-    },
-    {
-      "_id": "cookingActive",
-      "type": "state",
-      "common": {
-        "role": "indicator",
-        "name": "If cooking is active with one or more probes",
-        "type": "boolean",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    }
-  ]
+	"common": {
+		"name": "meater",
+		"version": "0.1.2",
+		"news": {
+			"0.1.2": {
+				"en": "Improved error handling for fetch",
+				"de": "Verbesserte Fehlerbehandlung für Fetch",
+				"ru": "Улучшена обработка ошибок для fetch",
+				"pt": "Melhor manuseio de erros para busca",
+				"nl": "Improviserende fouten om te halen",
+				"fr": "Amélioration de la manipulation des erreurs pour fetch",
+				"it": "Miglioramento della gestione degli errori per fetch",
+				"es": "Mejor manejo de errores para embrague",
+				"pl": "Poprawianie błędów w uchwyceniach dla przyzwyczajenia",
+				"uk": "Поліпшення обробки помилок для зчеплення",
+				"zh-cn": "B. 改善女巫的错误处理"
+			},
+			"0.1.0": {
+				"en": "Save password encrypted => please reenter password in adapter config\nSome minor improvements",
+				"de": "Passwort verschlüsselt speichern => bitte Passwort eingeben in Adapter config\nEinige kleinere Verbesserungen",
+				"ru": "Сохранить пароль зашифрован => пожалуйста, повторите пароль в адаптер config\nНекоторые незначительные улучшения",
+				"pt": "Salvar senha criptografada => por favor reinserir senha no adaptador config\nAlgumas pequenas melhorias",
+				"nl": "Bewaar het wachtwoord encrypted Verwijder het wachtwoord\nWat kleine verbetering",
+				"fr": "Enregistrer le mot de passe crypté = s'il vous plaît reenter mot de passe dans la configuration de l'adaptateur\nQuelques améliorations mineures",
+				"it": "Salva password crittografata = > si prega di reinserire la password nella configurazione dell'adattatore\nAlcuni miglioramenti minori",
+				"es": "Guardar contraseña cifrada = confianza por favor vuelva a introducir contraseña en el configuración del adaptador\nAlgunas mejoras menores",
+				"pl": "Wykorzystywanie haseł Czy warto przejść\nNiektóre drobne poprawy",
+				"uk": "Зашифрований паролем => будь ласка, reenter пароль в конфігурації адаптера\nДеякі незначні поліпшення",
+				"zh-cn": "Save密码 加密= 请重新写成适应器的密码\n有些微小的改进"
+			},
+			"0.1.0-alpha.0": {
+				"en": "First test release",
+				"de": "Erstes Test-Release",
+				"ru": "Первый тестовый релиз",
+				"pt": "Primeiro lançamento de teste",
+				"nl": "Eerste test",
+				"fr": "Premier essai",
+				"it": "Primo rilascio di prova",
+				"es": "Primera prueba de liberación",
+				"pl": "Pierwsza wersja testowa",
+				"uk": "Перший тестовий реліз",
+				"zh-cn": "第一次试验释放"
+			},
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"zh-cn": "首次出版",
+				"uk": "початковий випуск"
+			}
+		},
+		"title": "MEATER Wireless Smart Meat Thermometer",
+		"titleLang": {
+			"en": "MEATER Wireless Smart Meat Thermometer",
+			"de": "MEATER Wireless Smart Fleischthermometer",
+			"ru": "Беспроводной умный термометр для мяса MEATER",
+			"pt": "Termômetro de carne inteligente sem fio MEATER",
+			"nl": "MEATER Draadloze slimme vleesthermometer",
+			"fr": "Thermomètre à viande intelligent sans fil MEATER",
+			"it": "MEATER Termometro per carne intelligente wireless",
+			"es": "Termómetro inalámbrico inteligente para carne MEATER",
+			"pl": "Bezprzewodowy inteligentny termometr do mięsa MEATER",
+			"zh-cn": "MEATER 无线智能肉类温度计",
+			"uk": "Бездротовий смарт-термометр для м'яса MEATER"
+		},
+		"desc": {
+			"en": "Integrate you MEATER Thermometer into ioBroker via MEATER Cloud",
+			"de": "Integrieren Sie Ihr MEATER Thermometer über die MEATER Cloud in ioBroker",
+			"ru": "Интегрируйте свой термометр MEATER в ioBroker через MEATER Cloud",
+			"pt": "Integre seu MEATER Thermometer ao ioBroker via MEATER Cloud",
+			"nl": "Integreer uw MEATER-thermometer in ioBroker via MEATER Cloud",
+			"fr": "Intégrez votre thermomètre MEATER dans ioBroker via MEATER Cloud",
+			"it": "Integra il tuo termometro MEATER in ioBroker tramite MEATER Cloud",
+			"es": "Integre su termómetro MEATER en ioBroker a través de MEATER Cloud",
+			"pl": "Zintegruj termometr MEATER z ioBroker za pośrednictwem MEATER Cloud",
+			"zh-cn": "通过 MEATER Cloud 将您的 MEATER 温度计集成到 ioBroker",
+			"uk": "Інтегруйте свій термометр MEATER в ioBroker через хмару MEATER"
+		},
+		"authors": ["Standarduser"],
+		"keywords": ["meater", "thermometer", "wireless", "meat"],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "main.js",
+		"icon": "meater.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/Standarduser/ioBroker.meater/main/admin/meater.png",
+		"readme": "https://github.com/Standarduser/ioBroker.meater/blob/main/README.md",
+		"loglevel": "info",
+		"mode": "daemon",
+		"type": "household",
+		"compact": true,
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"adminUI": {
+			"config": "json"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=3.3.22"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=5.1.13"
+			}
+		]
+	},
+	"encryptedNative": ["password"],
+	"protectedNative": ["password"],
+	"native": {
+		"username": "",
+		"password": "",
+		"language": "de",
+		"updateIdle": 60,
+		"updateCook": 2,
+		"tempUnit": "°C",
+		"clearOldValues": true
+	},
+	"objects": [],
+	"instanceObjects": [
+		{
+			"_id": "info",
+			"type": "channel",
+			"common": {
+				"name": "Information"
+			},
+			"native": {}
+		},
+		{
+			"_id": "info.connection",
+			"type": "state",
+			"common": {
+				"role": "indicator.connected",
+				"name": "Device or service connected",
+				"type": "boolean",
+				"read": true,
+				"write": false,
+				"def": false
+			},
+			"native": {}
+		},
+		{
+			"_id": "info.token",
+			"type": "state",
+			"common": {
+				"role": "state",
+				"name": "Meater cloud auth token",
+				"type": "string",
+				"read": true,
+				"write": false,
+				"def": ""
+			},
+			"native": {}
+		},
+		{
+			"_id": "info.userId",
+			"type": "state",
+			"common": {
+				"role": "state",
+				"name": "User ID for Meater cloud",
+				"type": "string",
+				"read": true,
+				"write": false,
+				"def": ""
+			},
+			"native": {}
+		},
+		{
+			"_id": "rawData",
+			"type": "state",
+			"common": {
+				"role": "JSON",
+				"name": "Last answer from Meater cloud",
+				"type": "string",
+				"read": true,
+				"write": false,
+				"def": ""
+			},
+			"native": {}
+		},
+		{
+			"_id": "status",
+			"type": "state",
+			"common": {
+				"role": "state",
+				"name": "Status of cloud last API call",
+				"type": "string",
+				"read": true,
+				"write": false,
+				"def": ""
+			},
+			"native": {}
+		},
+		{
+			"_id": "statusCode",
+			"type": "state",
+			"common": {
+				"role": "state",
+				"name": "Status of cloud last API call as number",
+				"type": "number",
+				"read": true,
+				"write": false,
+				"def": null
+			},
+			"native": {}
+		},
+		{
+			"_id": "cookingActive",
+			"type": "state",
+			"common": {
+				"role": "indicator",
+				"name": "If cooking is active with one or more probes",
+				"type": "boolean",
+				"read": true,
+				"write": false,
+				"def": false
+			},
+			"native": {}
+		}
+	]
 }
