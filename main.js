@@ -72,29 +72,39 @@ class Meater extends utils.Adapter {
 						}),
 					},
 					async (error, response, result) => {
-						// Log received data
-						this.log.debug('result from login: ' + result);
+						// Error handling
+						// Remark:
+						// response.status == Statuscode of fetch/webserver
+						// result.status == Statuscode of MEATER Cloud API
+						if (response.status == 200) {
+							// Log received data
+							this.log.debug('result from login: ' + result);
 
-						// Save into states
-						await this.setStateAsync('rawData', result.toString(), true);
+							// Save into states
+							await this.setStateAsync('rawData', result.toString(), true);
 
-						// Handle status code
-						await this.handleStatusCode(JSON.parse(result));
-						if (this.statusCode == 200) {
-							this.loginFailure = false;
-							this.token = JSON.parse(result).data.token;
-							await this.setStateAsync('info.token', this.token, true);
+							// Handle status code
+							await this.handleStatusCode(JSON.parse(result));
+							if (this.statusCode == 200) {
+								this.loginFailure = false;
+								this.token = JSON.parse(result).data.token;
+								await this.setStateAsync('info.token', this.token, true);
 
-							await this.setStateAsync('info.userId', JSON.parse(result).data.userId, true);
-							await this.setStateAsync('status', JSON.parse(result).status, true);
-							this.readFromCloud();
+								await this.setStateAsync('info.userId', JSON.parse(result).data.userId, true);
+								await this.setStateAsync('status', JSON.parse(result).status, true);
+								this.readFromCloud();
+							} else {
+								// If something went wrong...
+								this.loginFailure = true;
+								// try again in <updateTimer> seconds
+								this.timeoutLogin = this.setTimeout(() => {
+									this.login();
+								}, this.updateTimer * 1000);
+							}
 						} else {
-							// If something went wrong...
-							this.loginFailure = true;
-							// try again in <updateTimer> seconds
-							this.timeoutLogin = this.setTimeout(() => {
-								this.login();
-							}, this.updateTimer * 1000);
+							this.log.error('failed reading data from cloud');
+							this.log.error('got following error from server: ' + error);
+							this.log.error('got following response from server: ' + response);
 						}
 					},
 				);
@@ -160,22 +170,32 @@ class Meater extends utils.Adapter {
 					headers: { Authorization: 'Bearer ' + this.token, 'Accept-Language': this.config.language },
 				},
 				async (error, response, result) => {
-					// Log received data
-					this.log.debug('result from cloud: ' + result);
+					// Error handling
+					// Remark:
+					// response.status == Statuscode of fetch/webserver
+					// result.status == Statuscode of MEATER Cloud API
+					if (response.status == 200) {
+						// Log received data
+						this.log.debug('result from readFromCloud: ' + result);
 
-					// Save states
-					this.setStateAsync('rawData', result.toString(), true);
-					this.setStateAsync('status', JSON.parse(result).status, true);
+						// Save states
+						this.setStateAsync('rawData', result.toString(), true);
+						this.setStateAsync('status', JSON.parse(result).status, true);
 
-					await this.handleStatusCode(JSON.parse(result));
+						await this.handleStatusCode(JSON.parse(result));
 
-					if (this.statusCode == 200) {
-						await this.readDeviceData(JSON.parse(result));
+						if (this.statusCode == 200) {
+							await this.readDeviceData(JSON.parse(result));
+						}
+						// If everthing is done run again in <updateTimer> seconds
+						this.timeoutReadFromCloud = this.setTimeout(() => {
+							this.readFromCloud();
+						}, this.updateTimer * 1000);
+					} else {
+						this.log.error('failed reading data from cloud');
+						this.log.error('got following error from server: ' + error);
+						this.log.error('got following response from server: ' + response);
 					}
-					// If everthing is done run again in <updateTimer> seconds
-					this.timeoutReadFromCloud = this.setTimeout(() => {
-						this.readFromCloud();
-					}, this.updateTimer * 1000);
 				},
 			);
 		} catch (error) {
