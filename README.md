@@ -51,6 +51,13 @@ This adapter uses the [public API](https://github.com/apption-labs/meater-cloud-
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+-   (Standarduser) added: State for manually trigger an update
+-   (Standarduser) improved: description of errors
+-   (Standarduser) fixed: Adapter stopped working if got an error from MEATER Cloud server (not API)
+
 ### 0.1.2 (2022-12-05)
 
 -   (Standarduser) Improved error handling for fetch

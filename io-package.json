@@ -223,6 +223,19 @@
 				"def": false
 			},
 			"native": {}
+		},
+		{
+			"_id": "update",
+			"type": "state",
+			"common": {
+				"role": "button",
+				"name": "Manually trigger an update",
+				"type": "boolean",
+				"read": false,
+				"write": true,
+				"def": false
+			},
+			"native": {}
 		}
 	]
 }
