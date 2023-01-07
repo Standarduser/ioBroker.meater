@@ -106,7 +106,7 @@ class Meater extends utils.Adapter {
 						// Remark:
 						// response.status == Statuscode of fetch/webserver
 						// result.status == Statuscode of MEATER Cloud API
-						if (response.status == 200) {
+						if ('status' in response && response.status == 200) {
 							// Log received data
 							this.log.debug('result from login: ' + result);
 
@@ -231,7 +231,7 @@ class Meater extends utils.Adapter {
 					// Remark:
 					// response.status == Statuscode of fetch/webserver
 					// result.status == Statuscode of MEATER Cloud API
-					if (response.status == 200) {
+					if ('status' in response && response.status == 200) {
 						// Log received data
 						this.log.debug('result from readFromCloud: ' + result);
 
