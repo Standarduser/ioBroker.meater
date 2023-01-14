@@ -79,7 +79,7 @@ This adapter uses the [public API](https://github.com/apption-labs/meater-cloud-
 
 MIT License
 
-Copyright (c) 2022 Standarduser
+Copyright (c) 2023 Standarduser
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
