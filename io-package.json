@@ -1,8 +1,21 @@
 {
 	"common": {
 		"name": "meater",
-		"version": "0.2.1",
+		"version": "0.2.2",
 		"news": {
+			"0.2.2": {
+				"en": ": improved: error handling if websever sent no response",
+				"de": ": verbessert: Fehlerbehandlung, wenn Websever keine Antwort gesendet hat",
+				"ru": ": улучшено: обработка ошибок, если websever не отправил ответа",
+				"pt": ": melhorou: manipulação de erros se o websever não enviou resposta",
+				"nl": "verbetering: fouten behandelen als websevers geen reactie sturen",
+				"fr": ": amélioré : manipulation d'erreurs si websever n'a envoyé aucune réponse",
+				"it": ": miglioramento: gestione degli errori se webever non ha inviato risposta",
+				"es": ": mejorado: manejo de errores si websever no envió respuesta",
+				"pl": "poprawiona: obsługa błędów, jeśli websever nie wysyła żadnej odpowiedzi",
+				"uk": ": поліпшення: обробка помилок, якщо websever відправлено не відповідь",
+				"zh-cn": "改进:如果各网站都发出答复,便处理错误。"
+			},
 			"0.2.1": {
 				"en": ": improved: error handling if websever sent no response",
 				"de": ": verbessert: Fehlerbehandlung, wenn Websever keine Antwort gesendet hat",
