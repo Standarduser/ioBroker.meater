@@ -79,7 +79,7 @@ class Meater extends utils.Adapter {
 					//await this.setStateAsync('update', { val: false, ack: true });
 				}
 			} catch (error) {
-				this.log.error('Got an error on handling state change: ' + error);
+				this.log.error(`Got an error on handling state change: ${error}.`);
 			}
 		}
 	}
@@ -132,14 +132,14 @@ class Meater extends utils.Adapter {
 								}, this.updateTimer * 1000);
 							}
 						} else {
-							this.log.error('failed reading data from cloud');
-							if (error) {
-								this.log.error('got following error from server: ' + JSON.stringify(error));
-							}
-							this.log.error('got following response from server: ' + JSON.stringify(response));
-							this.log.error('this seems to be an error of MEATER Cloud server');
 							this.updateTimer = 600; //sec
-							this.log.error(`try again in ${this.updateTimer} seconds`);
+							this.log.error(
+								`Failed reading data from cloud. This seems to be an error of MEATER Cloud server. Try again in ${this.updateTimer} seconds.`,
+							);
+							if (error) {
+								this.log.debug('Got following error from server: ' + JSON.stringify(error));
+							}
+							this.log.debug('Got following response from server: ' + JSON.stringify(response));
 
 							// If something went wrong...
 							this.loginFailure = true;
@@ -151,10 +151,10 @@ class Meater extends utils.Adapter {
 					},
 				);
 			} catch (error) {
-				this.log.error('Got an error while logging in: ' + error);
-				this.log.error('this seems to be an unhandled error of the adapter');
 				this.updateTimer = 600; //sec
-				this.log.error(`try again in ${this.updateTimer} seconds`);
+				this.log.error(
+					`Got an error while logging in: ${error}. This seems to be an unhandled error of the adapter. Try again in ${this.updateTimer} seconds.`,
+				);
 
 				// If something went wrong...
 				this.loginFailure = true;
@@ -176,10 +176,9 @@ class Meater extends utils.Adapter {
 				this.setState('info.connection', true, true);
 				break;
 			case 400: // Bad Request
-				this.log.warn('Statuscode 400 --> Bad Request');
-				this.setState('info.connection', false, true);
 				this.updateTimer = 600; //sec
-				this.log.error(`try again in ${this.updateTimer} seconds`);
+				this.log.warn(`Statuscode 400 --> Bad Request. Try again in ${this.updateTimer} seconds.`);
+				this.setState('info.connection', false, true);
 				break;
 			case 401: // Unauthorized
 				this.log.info('Statuscode 401 --> Unauthorized --> login');
@@ -187,28 +186,25 @@ class Meater extends utils.Adapter {
 				// If login went wrong raise updateTimer
 				if (this.loginFailure) {
 					this.updateTimer = 600; //sec
-					this.log.error(`try again in ${this.updateTimer} seconds`);
+					this.log.error(`Try again in ${this.updateTimer} seconds.`);
 					// login is selfcalling
 				} else {
 					await this.login();
 				}
 				break;
 			case 404: // Not Found
-				this.log.warn('Statuscode 404 --> Not Found');
-				this.setState('info.connection', false, true);
 				this.updateTimer = 600; //sec
-				this.log.error(`try again in ${this.updateTimer} seconds`);
+				this.log.warn(`Statuscode 404 --> Not Found. Try again in ${this.updateTimer} seconds.`);
+				this.setState('info.connection', false, true);
 				break;
 			case 429: // Too Many Requests
-				this.log.warn('Statuscode 429 --> Too Many Requests');
 				this.updateTimer = 600; //sec
-				this.log.error(`try again in ${this.updateTimer} seconds`);
+				this.log.warn(`Statuscode 429 --> Too Many Requests. Try again in ${this.updateTimer} seconds.`);
 				break;
 			case 500: // Internal Server Error
-				this.log.warn('Statuscode 500 --> Internal Server Error');
-				this.setState('info.connection', false, true);
 				this.updateTimer = 600; //sec
-				this.log.error(`try again in ${this.updateTimer} seconds`);
+				this.log.warn(`Statuscode 500 --> Internal Server Error. Try again in ${this.updateTimer} seconds.`);
+				this.setState('info.connection', false, true);
 				break;
 		}
 	}
@@ -245,22 +241,22 @@ class Meater extends utils.Adapter {
 							await this.readDeviceData(JSON.parse(result));
 						}
 					} else {
-						this.log.error('failed reading data from cloud');
-						if (error) {
-							this.log.error('got following error from server: ' + JSON.stringify(error));
-						}
-						this.log.error('got following response from server: ' + JSON.stringify(response));
-						this.log.error('this seems to be an error of MEATER Cloud server');
 						this.updateTimer = 600; //sec
-						this.log.error(`try again in ${this.updateTimer} seconds`);
+						this.log.error(
+							`Failed reading data from cloud. This seems to be an error of MEATER Cloud server. Try again in ${this.updateTimer} seconds.`,
+						);
+						if (error) {
+							this.log.debug('got following error from server: ' + JSON.stringify(error));
+						}
+						this.log.debug('got following response from server: ' + JSON.stringify(response));
 					}
 				},
 			);
 		} catch (error) {
-			this.log.error('Got an error while fetching data from cloud: ' + error);
-			this.log.error('this seems to be an unhandled error of the adapter');
 			this.updateTimer = 600; //sec
-			this.log.error(`try again in ${this.updateTimer} seconds`);
+			this.log.error(
+				`Got an error while fetching data from cloud: ${error}. This seems to be an unhandled error of the adapter. Try again in ${this.updateTimer} seconds.`,
+			);
 		}
 		// If everthing is done run again in <updateTimer> seconds
 		this.timeoutReadFromCloud = this.setTimeout(() => {
