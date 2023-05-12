@@ -22,7 +22,7 @@
     "node": ">= 14"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.6.7",
+    "@iobroker/adapter-core": "^2.6.8",
     "fetch": "^1.1.0"
   },
   "devDependencies": {
