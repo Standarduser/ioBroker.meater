@@ -1,20 +1,20 @@
 {
 	"common": {
 		"name": "meater",
-		"version": "1.0.1",
+		"version": "1.0.2",
 		"news": {
-			"1.0.1": {
-				"en": "Updated depencies",
-				"de": "Abhängigkeiten aktualisiert",
-				"ru": "Обновленные частоты",
-				"pt": "Deficiências atualizadas",
-				"nl": "Verouderde afhankelijkheid",
-				"fr": "Déploiements actualisés",
-				"it": "Spese aggiornate",
-				"es": "Casos actualizados",
-				"pl": "Depozyty",
-				"uk": "Оновлені недоліки",
-				"zh-cn": "最新情况"
+			"1.0.2": {
+				"en": "Updated depencies\nDropped node v14 support",
+				"de": "Abhängigkeiten aktualisiert\nNode v14 Unterstützung entfernt",
+				"ru": "Обновленные частоты\nDropped node v14 поддержка",
+				"pt": "Deficiências atualizadas\nSuporte de nó v14 dropped",
+				"nl": "Verouderde afhankelijkheid\nVertaling:",
+				"fr": "Déploiements actualisés\nDropped node v14 support",
+				"it": "Spese aggiornate\nGoccia nodo v14 supporto",
+				"es": "Casos actualizados\nSoporte de nodo caído v14",
+				"pl": "Depozyty\nWęzeł wodociągu v14",
+				"uk": "Оновлені недоліки\nDropped вузол v14 підтримка",
+				"zh-cn": "最新情况\n无端支持"
 			},
 			"1.0.0": {
 				"en": "First stable release",
