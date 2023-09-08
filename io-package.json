@@ -1,8 +1,21 @@
 {
 	"common": {
 		"name": "meater",
-		"version": "1.0.0",
+		"version": "1.0.1",
 		"news": {
+			"1.0.1": {
+				"en": "Updated depencies",
+				"de": "Abhängigkeiten aktualisiert",
+				"ru": "Обновленные частоты",
+				"pt": "Deficiências atualizadas",
+				"nl": "Verouderde afhankelijkheid",
+				"fr": "Déploiements actualisés",
+				"it": "Spese aggiornate",
+				"es": "Casos actualizados",
+				"pl": "Depozyty",
+				"uk": "Оновлені недоліки",
+				"zh-cn": "最新情况"
+			},
 			"1.0.0": {
 				"en": "First stable release",
 				"de": "Erste stabile Freigabe",
