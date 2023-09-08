@@ -51,9 +51,11 @@ This adapter uses the [public API](https://github.com/apption-labs/meater-cloud-
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### 1.0.1 (2023-09-08)
+
+### **WORK IN PROGRESS**
 
 -   (Standarduser) Updated depencies
+-   (Standarduser) Dropped node v14 support
 
 ### 1.0.0 (2023-05-12)
 

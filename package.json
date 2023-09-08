@@ -19,7 +19,7 @@
     "url": "git@github.com:Standarduser/ioBroker.meater.git"
   },
   "engines": {
-    "node": ">= 14"
+    "node": ">= 16"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.8",
