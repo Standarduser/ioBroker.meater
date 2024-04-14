@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "meater",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "news": {
+      "1.0.4": {
+        "en": "Tried to fix restart loop at the end of cooking",
+        "de": "Versuche, die Wiederanlaufschleife am Ende des Kochens zu fixieren",
+        "ru": "Пытался исправить цикл перезапуска в конце приготовления",
+        "pt": "Tentei corrigir o loop de reinício no final da cozinha",
+        "nl": "Probeerde herstartlus aan het einde van het koken te herstellen",
+        "fr": "Essai de fixer la boucle de redémarrage à la fin de la cuisson",
+        "it": "Ho cercato di risolvere il ciclo di riavvio alla fine della cottura",
+        "es": "Traté de arreglar el bucle de reanudación al final de la cocina",
+        "pl": "Próbował naprawić pętlę restart na koniec gotowania",
+        "uk": "Виконується для фіксації перезавантаження петлі в кінці приготування",
+        "zh-cn": "尝试在烹饪结束时修复重启循环"
+      },
       "1.0.3": {
         "en": "Tried to fix restart loop at the end of cooking",
         "de": "Versuche, die Wiederanlaufschleife am Ende des Kochens zu fixieren",
