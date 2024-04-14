@@ -450,7 +450,7 @@ class Meater extends utils.Adapter {
 			}
 
 			// cook states
-			if (deviceData.cook.state != '') {
+			if (deviceData.cook.state != null && deviceData.cook.state != '') {
 				numCooking += 1;
 			}
 
