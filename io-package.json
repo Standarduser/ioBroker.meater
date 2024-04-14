@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "meater",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "news": {
+      "1.0.5": {
+        "en": "Tried to fix restart loop at the end of cooking\nDropped node v16 support",
+        "de": "Versuche, die Wiederanlaufschleife am Ende des Kochens zu fixieren\nDroped Node v16 Unterstützung",
+        "ru": "Пытался исправить цикл перезапуска в конце приготовления\nВыброшенный узел v16 поддержка",
+        "pt": "Tentei corrigir o loop de reinício no final da cozinha\nSuporte de nó v16 dropped",
+        "nl": "Probeerde herstartlus aan het einde van het koken te herstellen\nGedropte node v16 ondersteuning",
+        "fr": "Essai de fixer la boucle de redémarrage à la fin de la cuisson\nPrise en charge des nœuds décrochés v16",
+        "it": "Ho cercato di risolvere il ciclo di riavvio alla fine della cottura\nGoccia nodo v16 supporto",
+        "es": "Traté de arreglar el bucle de reanudación al final de la cocina\nSoporte para nodo v16",
+        "pl": "Próbował naprawić pętlę restart na koniec gotowania\nObsługa upuszczonego węzła v16",
+        "uk": "Виконується для фіксації перезавантаження петлі в кінці приготування\nDropped вузол v16 підтримка",
+        "zh-cn": "尝试在烹饪结束时修复重启循环\n已丢弃节点 v16 支持"
+      },
       "1.0.4": {
         "en": "Tried to fix restart loop at the end of cooking",
         "de": "Versuche, die Wiederanlaufschleife am Ende des Kochens zu fixieren",
