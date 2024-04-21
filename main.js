@@ -439,10 +439,10 @@ class Meater extends utils.Adapter {
 		}
 
 		// check if device data has been sent
-		if (jsonObj.data.devices !== "undefined") {
-		
+		if (jsonObj.data.devices !== 'undefined') {
+
 			this.log.debug('got device data from cloud');
-		
+
 			// data from cloud
 			for (const dev in jsonObj.data.devices) {
 				const deviceData = jsonObj.data.devices[dev];
@@ -511,10 +511,10 @@ class Meater extends utils.Adapter {
 					expire: this.expire,
 				});
 			}
-		} else {	
+		} else {
 			this.log.debug('no device data from cloud has been sent');
-		}	
-		
+		}
+
 		// set updateTimer
 		if (numCooking > 0) {
 			this.updateTimer = this.config.updateCook;
