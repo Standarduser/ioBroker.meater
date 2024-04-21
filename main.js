@@ -438,75 +438,83 @@ class Meater extends utils.Adapter {
 			this.expire = 2 * this.updateTimer;
 		}
 
-		// data from cloud
-		for (const dev in jsonObj.data.devices) {
-			const deviceData = jsonObj.data.devices[dev];
-			const deviceName = deviceData.id;
+		// check if device data has been sent
+		if (jsonObj.data.devices !== "undefined") {
+		
+			this.log.debug('got device data from cloud');
+		
+			// data from cloud
+			for (const dev in jsonObj.data.devices) {
+				const deviceData = jsonObj.data.devices[dev];
+				const deviceName = deviceData.id;
 
-			// Check if device allready exists or has to be created
-			if (!devices.includes(deviceName)) {
-				this.log.info('Found new probe --> creating device: ' + deviceName);
-				await this.createNewDevice(deviceName);
+				// Check if device allready exists or has to be created
+				if (!devices.includes(deviceName)) {
+					this.log.info('Found new probe --> creating device: ' + deviceName);
+					await this.createNewDevice(deviceName);
+				}
+
+				// cook states
+				if (deviceData.cook.state != '') {
+					numCooking += 1;
+				}
+
+				// save states
+				await this.setStateAsync(deviceName + '.last_update', {
+					val: deviceData.updated_at,
+					ack: true,
+					expire: this.expire,
+				});
+				await this.setStateAsync(deviceName + '.temperature.internal', {
+					val: deviceData.temperature.internal,
+					ack: true,
+					expire: this.expire,
+				});
+				await this.setStateAsync(deviceName + '.temperature.ambient', {
+					val: deviceData.temperature.ambient,
+					ack: true,
+					expire: this.expire,
+				});
+				await this.setStateAsync(deviceName + '.temperature.target', {
+					val: deviceData.cook.temperature.target,
+					ack: true,
+					expire: this.expire,
+				});
+				await this.setStateAsync(deviceName + '.temperature.peak', {
+					val: deviceData.cook.temperature.peak,
+					ack: true,
+					expire: this.expire,
+				});
+				await this.setStateAsync(deviceName + '.cook.id', {
+					val: deviceData.cook.id,
+					ack: true,
+					expire: this.expire,
+				});
+				await this.setStateAsync(deviceName + '.cook.name', {
+					val: deviceData.cook.name,
+					ack: true,
+					expire: this.expire,
+				});
+				await this.setStateAsync(deviceName + '.cook.state', {
+					val: deviceData.cook.state,
+					ack: true,
+					expire: this.expire,
+				});
+				await this.setStateAsync(deviceName + '.cook.time_elapsed', {
+					val: deviceData.cook.time.elapsed,
+					ack: true,
+					expire: this.expire,
+				});
+				await this.setStateAsync(deviceName + '.cook.time_remaining', {
+					val: deviceData.cook.time.remaining,
+					ack: true,
+					expire: this.expire,
+				});
 			}
-
-			// cook states
-			if (deviceData.cook.state != null && deviceData.cook.state != '') {
-				numCooking += 1;
-			}
-
-			// save states
-			await this.setStateAsync(deviceName + '.last_update', {
-				val: deviceData.updated_at,
-				ack: true,
-				expire: this.expire,
-			});
-			await this.setStateAsync(deviceName + '.temperature.internal', {
-				val: deviceData.temperature.internal,
-				ack: true,
-				expire: this.expire,
-			});
-			await this.setStateAsync(deviceName + '.temperature.ambient', {
-				val: deviceData.temperature.ambient,
-				ack: true,
-				expire: this.expire,
-			});
-			await this.setStateAsync(deviceName + '.temperature.target', {
-				val: deviceData.cook.temperature.target,
-				ack: true,
-				expire: this.expire,
-			});
-			await this.setStateAsync(deviceName + '.temperature.peak', {
-				val: deviceData.cook.temperature.peak,
-				ack: true,
-				expire: this.expire,
-			});
-			await this.setStateAsync(deviceName + '.cook.id', {
-				val: deviceData.cook.id,
-				ack: true,
-				expire: this.expire,
-			});
-			await this.setStateAsync(deviceName + '.cook.name', {
-				val: deviceData.cook.name,
-				ack: true,
-				expire: this.expire,
-			});
-			await this.setStateAsync(deviceName + '.cook.state', {
-				val: deviceData.cook.state,
-				ack: true,
-				expire: this.expire,
-			});
-			await this.setStateAsync(deviceName + '.cook.time_elapsed', {
-				val: deviceData.cook.time.elapsed,
-				ack: true,
-				expire: this.expire,
-			});
-			await this.setStateAsync(deviceName + '.cook.time_remaining', {
-				val: deviceData.cook.time.remaining,
-				ack: true,
-				expire: this.expire,
-			});
-		}
-
+		} else {	
+			this.log.debug('no device data from cloud has been sent');
+		}	
+		
 		// set updateTimer
 		if (numCooking > 0) {
 			this.updateTimer = this.config.updateCook;
