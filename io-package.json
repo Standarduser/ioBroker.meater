@@ -118,7 +118,11 @@
       "wireless",
       "meat"
     ],
-    "license": "MIT",
+    "tier": 2,
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
     "platform": "Javascript/Node.js",
     "main": "main.js",
     "icon": "meater.png",
