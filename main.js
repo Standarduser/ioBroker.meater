@@ -472,8 +472,11 @@ class Meater extends utils.Adapter {
 
 				// the following values will only appear while cooking is active
 				if (
-					deviceData.cook.state !== 'undefined' &&
+					deviceData.cook !== null &&
+					deviceData.cook !== 'undefined' &&
+					deviceData.cook !== '' &&
 					deviceData.cook.state !== null &&
+					deviceData.cook.state !== 'undefined' &&
 					deviceData.cook.state !== ''
 				) {
 					numCooking += 1;
