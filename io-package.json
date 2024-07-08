@@ -43,7 +43,6 @@
 				"zh-cn": "第一次稳定释放"
 			}
 		},
-		"title": "MEATER Wireless Smart Meat Thermometer",
 		"titleLang": {
 			"en": "MEATER Wireless Smart Meat Thermometer",
 			"de": "MEATER Wireless Smart Fleischthermometer",
@@ -94,12 +93,12 @@
 		},
 		"dependencies": [
 			{
-				"js-controller": ">=3.3.22"
+				"js-controller": ">=5.0.19"
 			}
 		],
 		"globalDependencies": [
 			{
-				"admin": ">=5.1.13"
+				"admin": ">=6.17.14"
 			}
 		]
 	},
