@@ -90,7 +90,6 @@
 			"license": "MIT"
 		},
 		"platform": "Javascript/Node.js",
-		"main": "main.js",
 		"icon": "meater.png",
 		"enabled": true,
 		"extIcon": "https://raw.githubusercontent.com/Standarduser/ioBroker.meater/main/admin/meater.png",
