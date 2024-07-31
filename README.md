@@ -55,6 +55,7 @@ This adapter uses the [public API](https://github.com/apption-labs/meater-cloud-
 ### **WORK IN PROGRESS**
 
 -   (Standarduser) Fixed some messages of Adapter checker
+-   (Standarduser) updated depencies and devDepencies
 
 ### 1.1.1 (2024-07-08)
 
