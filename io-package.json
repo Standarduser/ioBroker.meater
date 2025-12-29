@@ -1,8 +1,21 @@
 {
 	"common": {
 		"name": "meater",
-		"version": "1.1.0",
+		"version": "1.1.1",
 		"news": {
+			"1.1.1": {
+				"en": "Fixed some messages of Adapter checker\nUpdated depencies\nDetailed error message",
+				"de": "Einige Nachrichten von Adapter Checker behoben\nAktualisierte Abhängigkeiten\nDetailliertere Fehlermeldung",
+				"ru": "Исправлены некоторые сообщения шашки адаптера\nОбновленные резервы\nПодробное сообщение об ошибке",
+				"pt": "Corrigido algumas mensagens do verificador do adaptador\nDeficiências atualizadas\nMensagem de erro detalhada",
+				"nl": "Enkele berichten van Adapter-checker hersteld\nBijgewerkte capaciteiten\nGedetailleerde foutmelding",
+				"fr": "Correction de certains messages du vérificateur d'adaptateur\nDéficiences actualisées\nMessage d'erreur détaillé",
+				"it": "Risolto alcuni messaggi di Adattatore checker\nSpese aggiornate\nMessaggio di errore dettagliato",
+				"es": "Se han fijado algunos mensajes de Adaptador\nCasos actualizados\nMensaje de error detallado",
+				"pl": "Naprawiono kilka komunikatów z sprawdzania Adaptera\nAktualizacja zależności\nSzczegółowy komunikat błędu",
+				"uk": "Виправлено деякі повідомлення перевірки адаптера\nОновлені недоліки\nДетальне повідомлення про помилку",
+				"zh-cn": "修正适配器检查器的一些消息\n最新负债\n详细错误消息"
+			},
 			"1.1.0": {
 				"en": "Tried to fix restart loop at the end of cooking\nDropped node v16 support",
 				"de": "Versuche, die Wiederanlaufschleife am Ende des Kochens zu fixieren\nDroped Node v16 Unterstützung",
@@ -43,7 +56,6 @@
 				"zh-cn": "第一次稳定释放"
 			}
 		},
-		"title": "MEATER Wireless Smart Meat Thermometer",
 		"titleLang": {
 			"en": "MEATER Wireless Smart Meat Thermometer",
 			"de": "MEATER Wireless Smart Fleischthermometer",
@@ -78,7 +90,6 @@
 			"license": "MIT"
 		},
 		"platform": "Javascript/Node.js",
-		"main": "main.js",
 		"icon": "meater.png",
 		"enabled": true,
 		"extIcon": "https://raw.githubusercontent.com/Standarduser/ioBroker.meater/main/admin/meater.png",
@@ -94,12 +105,12 @@
 		},
 		"dependencies": [
 			{
-				"js-controller": ">=3.3.22"
+				"js-controller": ">=5.0.19"
 			}
 		],
 		"globalDependencies": [
 			{
-				"admin": ">=5.1.13"
+				"admin": ">=6.17.14"
 			}
 		]
 	},
