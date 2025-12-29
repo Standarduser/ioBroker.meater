@@ -134,7 +134,7 @@ class Meater extends utils.Adapter {
 						} else {
 							this.updateTimer = 600; //sec
 							this.log.error(
-								`Failed reading data from cloud. This seems to be an error of MEATER Cloud server. Try again in ${this.updateTimer} seconds.`,
+								`Failed reading data from cloud. This seems to be an error of MEATER Cloud server or missing internet connection. Try again in ${this.updateTimer} seconds.`,
 							);
 							if (error) {
 								this.log.debug('Got following error from server: ' + JSON.stringify(error));
