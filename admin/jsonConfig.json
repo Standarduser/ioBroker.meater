@@ -13,7 +13,8 @@
 			"xs": 12,
 			"sm": 12,
 			"md": 6,
-			"lg": 6
+			"lg": 4,
+			"xl": 4
 		},
 		"password": {
 			"type": "password",
@@ -21,7 +22,8 @@
 			"xs": 12,
 			"sm": 12,
 			"md": 6,
-			"lg": 6,
+			"lg": 4,
+			"xl": 4,
 			"newLine": true
 		},
 		"headerConfig": {
@@ -40,6 +42,7 @@
 			"sm": 2,
 			"md": 2,
 			"lg": 2,
+			"xl": 2,
 			"newLine": true
 		},
 		"updateIdle": {
@@ -51,6 +54,7 @@
 			"sm": 2,
 			"md": 2,
 			"lg": 2,
+			"xl": 2,
 			"newLine": true
 		},
 		"updateCook": {
@@ -61,7 +65,8 @@
 			"xs": 2,
 			"sm": 2,
 			"md": 2,
-			"lg": 2
+			"lg": 2,
+			"xl": 2
 		},
 		"tempUnit": {
 			"type": "select",
@@ -74,6 +79,7 @@
 			"sm": 2,
 			"md": 2,
 			"lg": 2,
+			"xl": 2,
 			"newLine": true
 		},
 		"tempUnitDescription": {
@@ -82,7 +88,8 @@
 			"xs": 2,
 			"sm": 3,
 			"md": 4,
-			"lg": 4
+			"lg": 4,
+			"xl": 6
 		},
 		"clearOldValues": {
 			"type": "checkbox",
@@ -99,7 +106,8 @@
 			"xs": 2,
 			"sm": 3,
 			"md": 4,
-			"lg": 4
+			"lg": 4,
+			"xl": 6
 		}
 	}
 }
