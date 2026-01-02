@@ -11,19 +11,19 @@
 			"type": "text",
 			"label": "lblUsername",
 			"xs": 12,
-			"sm": 12,
+			"sm": 10,
 			"md": 6,
 			"lg": 4,
-			"xl": 4
+			"xl": 2
 		},
 		"password": {
 			"type": "password",
 			"label": "lblPassword",
 			"xs": 12,
-			"sm": 12,
+			"sm": 10,
 			"md": 6,
 			"lg": 4,
-			"xl": 4,
+			"xl": 2,
 			"newLine": true
 		},
 		"headerConfig": {
@@ -38,10 +38,10 @@
 				{ "label": { "en": "English" }, "value": "en" },
 				{ "label": { "en": "German" }, "value": "de" }
 			],
-			"xs": 2,
-			"sm": 2,
-			"md": 2,
-			"lg": 2,
+			"xs": 6,
+			"sm": 6,
+			"md": 4,
+			"lg": 3,
 			"xl": 2,
 			"newLine": true
 		},
@@ -50,10 +50,10 @@
 			"min": 1,
 			"max": 300,
 			"label": "lblUpdateIdle",
-			"xs": 2,
-			"sm": 2,
-			"md": 2,
-			"lg": 2,
+			"xs": 6,
+			"sm": 6,
+			"md": 4,
+			"lg": 3,
 			"xl": 2,
 			"newLine": true
 		},
@@ -62,10 +62,10 @@
 			"min": 1,
 			"max": 300,
 			"label": "lblUpdateCook",
-			"xs": 2,
-			"sm": 2,
-			"md": 2,
-			"lg": 2,
+			"xs": 6,
+			"sm": 6,
+			"md": 4,
+			"lg": 3,
 			"xl": 2
 		},
 		"tempUnit": {
@@ -75,9 +75,9 @@
 				{ "label": "°C", "value": "°C" },
 				{ "label": "°F", "value": "°F" }
 			],
-			"xs": 2,
-			"sm": 2,
-			"md": 2,
+			"xs": 3,
+			"sm": 3,
+			"md": 3,
 			"lg": 2,
 			"xl": 2,
 			"newLine": true
@@ -85,28 +85,29 @@
 		"tempUnitDescription": {
 			"type": "staticText",
 			"text": "txtTempUnitDescription",
-			"xs": 2,
-			"sm": 3,
-			"md": 4,
-			"lg": 4,
+			"xs": 9,
+			"sm": 9,
+			"md": 6,
+			"lg": 6,
 			"xl": 6
 		},
 		"clearOldValues": {
 			"type": "checkbox",
 			"label": "lblClearOldValues",
-			"xs": 2,
-			"sm": 2,
-			"md": 2,
+			"xs": 3,
+			"sm": 3,
+			"md": 3,
 			"lg": 2,
+			"xl": 2,
 			"newLine": true
 		},
 		"clearOldValuesDescription": {
 			"type": "staticText",
 			"text": "txtClearOldValuesDescription",
-			"xs": 2,
-			"sm": 3,
-			"md": 4,
-			"lg": 4,
+			"xs": 9,
+			"sm": 9,
+			"md": 6,
+			"lg": 6,
 			"xl": 6
 		}
 	}
