@@ -51,6 +51,9 @@ This adapter uses the [public API](https://github.com/apption-labs/meater-cloud-
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
+
 ### 1.1.2 (2026-01-02)
 
 -   Fixed issues of Adapter checker
