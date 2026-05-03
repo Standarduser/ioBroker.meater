@@ -76,6 +76,8 @@ This adapter uses the [public API](https://github.com/apption-labs/meater-cloud-
 
 -   First stable release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 MIT License
