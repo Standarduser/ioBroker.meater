@@ -47,6 +47,9 @@ This adapter uses the [public API](https://github.com/apption-labs/meater-cloud-
 
 ## Changelog
 
+### **WORK IN PROGRESS**
+- (iobroker-bot) Adapter requires node.js >= 22 now.
+
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
